@@ -6,6 +6,6 @@ export default class Rabbit {
 
 export type RabbitConnection = Promise<Rabbit>
 
-const connection: RabbitConnection = new Promise(resolve => resolve(new Rabbit()))
+const rabbitConnection: RabbitConnection = new Promise(resolve => resolve(new Rabbit()))
 
-export { connection }
+export { rabbitConnection }

@@ -1,4 +1,4 @@
-import { QueueReference } from "./BaseQueue"
+import { QueueReference } from './BaseQueue'
 
 /**
  * Абстрактный класс для любого провайдера в приложении

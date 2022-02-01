@@ -1,4 +1,4 @@
-import { Container } from "inversify";
+import { Container } from 'inversify'
 
 /**
  * Абстрактный класс для любого провайдера в приложении

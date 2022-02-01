@@ -6,6 +6,6 @@ export default class Clickhouse {
 
 export type ClickhHuseConnection = Promise<Clickhouse>
 
-const connection: ClickhHuseConnection = new Promise(resolve => resolve(new Clickhouse()))
+const clickhouseConnection: ClickhHuseConnection = new Promise(resolve => resolve(new Clickhouse()))
 
-export { connection }
+export { clickhouseConnection }

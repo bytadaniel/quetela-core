@@ -1,9 +1,9 @@
-import { BaseProvider } from "../Core/BaseModel/BaseProvider";
-import { connection } from '../Connections/clickhouse'
+import { BaseProvider } from "../Core/BaseModel";
+import { clickhouseConnection } from '../Connections'
 
-export default class ClickhouseProvider extends BaseProvider {
+export class ClickhouseProvider extends BaseProvider {
   public register () {
-    this.container.bind('clickhouse').toConstantValue(connection)
+    this.container.bind('clickhouse').toConstantValue(clickhouseConnection)
   }
 
   public async init () {
