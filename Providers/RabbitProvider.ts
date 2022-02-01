@@ -1,9 +1,9 @@
-import { BaseProvider } from "../Core/BaseModel/BaseProvider";
-import { connection } from '../Connections/rabbit'
+import { BaseProvider } from '../Core/BaseModel'
+import { rabbitConnection } from '../Connections'
 
-export default class RabbitProvider extends BaseProvider {
+export class RabbitProvider extends BaseProvider {
   public register () {
-    this.container.bind('rabbit').toConstantValue(connection)
+    this.container.bind('rabbit').toConstantValue(rabbitConnection)
   }
 
   public async init () {

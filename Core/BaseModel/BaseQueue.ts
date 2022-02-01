@@ -1,4 +1,4 @@
-import { RabbitConnection } from "../../Connections/rabbit";
+import { RabbitConnection } from '../../Connections/rabbit'
 
 export abstract class BaseQueue {
   /**

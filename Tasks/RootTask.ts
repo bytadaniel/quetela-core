@@ -1,5 +1,5 @@
-import { BaseTask } from '../Core/BaseModel/BaseTask';
-import RootQueue from '../Queues/RootQueue';
+import { BaseTask } from '../Core/BaseModel'
+import RootQueue from '../Queues/RootQueue'
 
 export default class RootTask extends BaseTask {
   public taskName: string = 'root_task'
