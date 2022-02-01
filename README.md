@@ -4,6 +4,8 @@ Light queue based app framework for simple enterprise development
 
 ## Basic start
 ```javascript
+// Scripts/RootScript.ts
+
 import { Ignitor } from '../Core/Ignitor/Ignitor'
 import RabbitProvider from '../Providers/RabbitProvider'
 import ClickhouseProvider from '../Providers/ClickhouseProvider'
@@ -14,3 +16,5 @@ Ignitor({
   providers: [RabbitProvider, ClickhouseProvider]
 })
 ```
+
+`$ npm run script:root`
