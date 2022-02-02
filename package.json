@@ -9,7 +9,7 @@
     "script:root": "node build/Scripts/RootScript"
   },
   "keywords": [
-    "queuela",
+    "quetela",
     "core",
     "amqp",
     "queue",
@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bytadaniel/queuela.git"
+    "url": "git+https://github.com/bytadaniel/quetela"
   },
   "bugs": {
-    "url": "https://github.com/bytadaniel/queuela/issues"
+    "url": "https://github.com/bytadaniel/quetela/issues"
   },
-  "homepage": "https://github.com/bytadaniel/queuela#readme"
+  "homepage": "https://github.com/bytadaniel/quetela#readme"
 }
