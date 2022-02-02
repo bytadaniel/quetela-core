@@ -4,4 +4,3 @@ export declare class RabbitProvider extends Provider {
     init(): Promise<void>;
     ready(): Promise<void>;
 }
-//# sourceMappingURL=Rabbit.provider.d.ts.map

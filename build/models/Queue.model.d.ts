@@ -12,4 +12,3 @@ export declare abstract class Queue {
 export interface QueueReference {
     new (): Queue;
 }
-//# sourceMappingURL=Queue.model.d.ts.map

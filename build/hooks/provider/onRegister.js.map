@@ -1,1 +1,0 @@
-{"version":3,"file":"onRegister.js","sourceRoot":"","sources":["../../../hooks/provider/onRegister.ts"],"names":[],"mappings":";;;;;;;;;;;;AAEA;;;GAGG;AACH,SAAsB,kBAAkB,CAAE,SAAqB;;QAC7D,KAAK,MAAM,QAAQ,IAAI,SAAS,EAAE;YAChC,QAAQ,CAAC,QAAQ,EAAE,CAAA;SACpB;IACH,CAAC;CAAA;AAJD,gDAIC"}

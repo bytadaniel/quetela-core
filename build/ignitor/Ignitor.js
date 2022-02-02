@@ -16,7 +16,7 @@ const hooks_1 = require("../hooks");
  * Ignitor - это инициализатор приложения. Функция принимает ссылки на необходимые компоненты
  * после чего регистрирует все зависимости в Ioc контейнере и начинает прослушку задач
  */
-function Ignitor({ providers, tasks }) {
+function Ignitor({ providers = [], tasks = [] }) {
     return __awaiter(this, void 0, void 0, function* () {
         const providerInstances = providers.map(Provider => new Provider(container_1.container));
         const taskInstances = tasks.map(Task => new Task());
@@ -31,4 +31,3 @@ function Ignitor({ providers, tasks }) {
     });
 }
 exports.Ignitor = Ignitor;
-//# sourceMappingURL=Ignitor.js.map

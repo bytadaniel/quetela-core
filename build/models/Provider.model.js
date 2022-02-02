@@ -13,4 +13,3 @@ class Provider {
     }
 }
 exports.Provider = Provider;
-//# sourceMappingURL=Provider.model.js.map

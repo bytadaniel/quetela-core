@@ -5,4 +5,3 @@ export default class Rabbit {
 export declare type RabbitConnection = Promise<Rabbit>;
 declare const rabbitConnection: RabbitConnection;
 export { rabbitConnection };
-//# sourceMappingURL=Rabbit.connection.d.ts.map

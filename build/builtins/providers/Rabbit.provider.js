@@ -27,4 +27,3 @@ class RabbitProvider extends models_1.Provider {
     }
 }
 exports.RabbitProvider = RabbitProvider;
-//# sourceMappingURL=Rabbit.provider.js.map

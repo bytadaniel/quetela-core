@@ -22,4 +22,3 @@ function onProviderReady(providers) {
     });
 }
 exports.onProviderReady = onProviderReady;
-//# sourceMappingURL=onReady.js.map

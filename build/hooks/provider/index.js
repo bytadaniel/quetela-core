@@ -13,4 +13,3 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./onRegister"), exports);
 __exportStar(require("./onInit"), exports);
 __exportStar(require("./onReady"), exports);
-//# sourceMappingURL=index.js.map

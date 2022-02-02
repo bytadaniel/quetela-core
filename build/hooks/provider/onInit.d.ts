@@ -4,4 +4,3 @@ import { Provider } from '../../models/Provider.model';
  * чтобы разрешить все промисы, приходящие из I/O
  */
 export declare function onProviderInit(providers: Provider[]): Promise<void>;
-//# sourceMappingURL=onInit.d.ts.map

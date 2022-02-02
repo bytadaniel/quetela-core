@@ -4,4 +4,3 @@ exports.Queue = void 0;
 class Queue {
 }
 exports.Queue = Queue;
-//# sourceMappingURL=Queue.model.js.map

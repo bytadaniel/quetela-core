@@ -22,4 +22,3 @@ function onProviderRegister(providers) {
     });
 }
 exports.onProviderRegister = onProviderRegister;
-//# sourceMappingURL=onRegister.js.map

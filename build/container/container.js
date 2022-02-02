@@ -5,4 +5,3 @@ require("reflect-metadata");
 const inversify_1 = require("inversify");
 const container = new inversify_1.Container();
 exports.container = container;
-//# sourceMappingURL=container.js.map

@@ -24,4 +24,3 @@ export declare abstract class Provider {
 export interface ProviderReference {
     new (container: Container): Provider;
 }
-//# sourceMappingURL=Provider.model.d.ts.map

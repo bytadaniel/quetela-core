@@ -15,4 +15,3 @@ __exportStar(require("./container"), exports);
 __exportStar(require("./hooks"), exports);
 __exportStar(require("./ignitor"), exports);
 __exportStar(require("./models"), exports);
-//# sourceMappingURL=index.js.map

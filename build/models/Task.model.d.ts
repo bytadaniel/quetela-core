@@ -33,4 +33,3 @@ export declare abstract class Task<TaskPayload = unknown, TaskResult = unknown> 
 export interface TaskReference {
     new (): Task;
 }
-//# sourceMappingURL=Task.model.d.ts.map

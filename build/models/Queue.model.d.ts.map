@@ -1,1 +1,0 @@
-{"version":3,"file":"Queue.model.d.ts","sourceRoot":"","sources":["../../models/Queue.model.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,aAAa,CAAA;AAE9C,8BAAsB,KAAK;IACzB;;OAEG;IACH,QAAQ,CAAC,SAAS,EAAE,MAAM,CAAC;IAC3B;;OAEG;IACH,QAAQ,CAAC,UAAU,EAAE,OAAO,CAAC,gBAAgB,CAAC,CAAA;CAC/C;AAED,MAAM,WAAW,cAAc;IAC7B,QAAO,KAAK,CAAA;CACb"}

@@ -22,4 +22,3 @@ function onProviderInit(providers) {
     });
 }
 exports.onProviderInit = onProviderInit;
-//# sourceMappingURL=onInit.js.map

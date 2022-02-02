@@ -8,4 +8,3 @@ class Rabbit {
 exports.default = Rabbit;
 const rabbitConnection = new Promise(resolve => resolve(new Rabbit()));
 exports.rabbitConnection = rabbitConnection;
-//# sourceMappingURL=Rabbit.connection.js.map
