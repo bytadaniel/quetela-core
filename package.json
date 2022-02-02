@@ -1,6 +1,6 @@
 {
   "name": "@queuela/core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
     "dev": "ts-node",
