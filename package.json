@@ -4,6 +4,7 @@
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
     "dev": "ts-node",
+    "test": "",
     "build": "tsc",
     "script:root": "node build/Scripts/RootScript"
   },
