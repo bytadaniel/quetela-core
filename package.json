@@ -1,5 +1,5 @@
 {
-  "name": "@queuela/core",
+  "name": "queuela-core",
   "version": "1.0.0",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
