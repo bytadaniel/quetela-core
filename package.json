@@ -1,6 +1,6 @@
 {
   "name": "queuela-core-test",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
     "dev": "ts-node",
