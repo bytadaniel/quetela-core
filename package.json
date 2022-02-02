@@ -1,13 +1,12 @@
 {
   "name": "@quetela/core",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
     "dev": "ts-node",
     "test": "",
     "build": "tsc",
-    "rebuild": "rm -d -r -d build && npm run build",
-    "publish": "npm run rebuild && np"
+    "rebuild": "rm -d -r -d build && npm run build"
   },
   "keywords": [
     "quetela",
