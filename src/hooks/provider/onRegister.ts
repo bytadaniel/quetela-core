@@ -1,4 +1,4 @@
-import { BaseProvider } from '../../BaseModel/BaseProvider'
+import { BaseProvider } from '../../models/Provider.model'
 
 /**
  * Регистрирующий провайдеры хук. Вызывается после инициализации инстансов каждого провайдера,

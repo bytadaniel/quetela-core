@@ -1,4 +1,4 @@
-import { BaseProvider } from '../../BaseModel/BaseProvider'
+import { BaseProvider } from '../../models/Provider.model'
 
 /**
  * Асинхронный хук, который может использоваться для любых действий после того,

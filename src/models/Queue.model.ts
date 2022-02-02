@@ -1,6 +1,6 @@
-import { RabbitConnection } from '../../Connections/rabbit'
+import { RabbitConnection } from '../builtins'
 
-export abstract class BaseQueue {
+export abstract class Queue {
   /**
    * Имя очереди задач, которое будет зарегистрировано в реббите
    */
@@ -12,5 +12,5 @@ export abstract class BaseQueue {
 }
 
 export interface QueueReference {
-  new(): BaseQueue
+  new(): Queue
 }

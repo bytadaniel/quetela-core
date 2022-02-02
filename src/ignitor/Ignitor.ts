@@ -1,9 +1,9 @@
-import { container } from '../Container/container'
-import { ProviderReference } from '../BaseModel/BaseProvider'
-import { TaskReference } from '../BaseModel/BaseTask'
-import { onProviderInit, onProviderReady, onProviderRegister } from '../Hooks'
+import { container } from '../container'
+import { ProviderReference } from '../models'
+import { TaskReference } from '../models'
+import { onProviderInit, onProviderReady, onProviderRegister } from '../hooks'
 
-export type BootstrapConfig = {
+export type IgnitorConfig = {
   tasks: TaskReference[],
   providers: ProviderReference[]
 }
@@ -12,7 +12,7 @@ export type BootstrapConfig = {
  * Ignitor - это инициализатор приложения. Функция принимает ссылки на необходимые компоненты
  * после чего регистрирует все зависимости в Ioc контейнере и начинает прослушку задач
  */
-export async function Ignitor ({ providers, tasks }: BootstrapConfig): Promise<void> {
+export async function Ignitor ({ providers, tasks }: IgnitorConfig): Promise<void> {
   const providerInstances = providers.map(Provider => new Provider(container))
   const taskInstances = tasks.map(Task => new Task())
 

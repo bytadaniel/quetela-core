@@ -1,7 +1,7 @@
-import { BaseProvider } from '../Core/BaseModel'
-import { rabbitConnection } from '../Connections'
+import { Provider } from '../../models'
+import { rabbitConnection } from '..'
 
-export class RabbitProvider extends BaseProvider {
+export class RabbitProvider extends Provider {
   public register () {
     this.container.bind('rabbit').toConstantValue(rabbitConnection)
   }

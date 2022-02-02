@@ -1,11 +1,11 @@
-import { QueueReference } from './BaseQueue'
+import { QueueReference } from './Queue.model'
 
 /**
  * Абстрактный класс для любого провайдера в приложении
  * @TaskPayload - котекст текущей задачи
  * @TaskResult - результат обработчика родительской задачи
  */
-export abstract class BaseTask<TaskPayload = unknown, TaskResult = unknown> {
+export abstract class Task<TaskPayload = unknown, TaskResult = unknown> {
   /**
    * Название задачи, которое будет циркулировать внутри очереди задач
    */
@@ -37,5 +37,5 @@ export abstract class BaseTask<TaskPayload = unknown, TaskResult = unknown> {
 }
 
 export interface TaskReference {
-  new(): BaseTask
+  new(): Task
 }

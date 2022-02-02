@@ -1,5 +1,5 @@
 {
-  "name": "amqp-framework",
+  "name": "@queuela/core",
   "version": "1.0.0",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "node_modules/.bin/tsc",
     "script:root": "node build/Scripts/RootScript"
   },
-  "keywords": ["amqp", "queue", "task", "framework"],
+  "keywords": ["queuela", "core", "amqp", "queue", "task", "framework"],
   "author": "danielbyta",
   "license": "MIT",
   "dependencies": {

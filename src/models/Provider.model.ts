@@ -3,7 +3,7 @@ import { Container } from 'inversify'
 /**
  * Абстрактный класс для любого провайдера в приложении
  */
-export abstract class BaseProvider {
+export abstract class Provider {
   /**
    * В текущей реализации используется Inversify контейнер
    */
@@ -26,5 +26,5 @@ export abstract class BaseProvider {
 }
 
 export interface ProviderReference {
-  new(container: Container): BaseProvider
+  new(container: Container): Provider
 }
