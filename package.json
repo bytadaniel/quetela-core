@@ -1,6 +1,6 @@
 {
   "name": "@quetela/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Light queue based app framework for simple enterprise development",
   "scripts": {
     "dev": "ts-node",
