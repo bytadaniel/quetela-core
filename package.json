@@ -18,17 +18,12 @@
     "rebuild": "rm -d -r -d build && npm run build"
   },
   "files": [
-    "*"
+    "build/src"
   ],
-  "exports": {
-    "./ignitor": "./build/src/ignitor/index.js",
-    "./hooks": "./build/src/hooks/index.js",
-    "./container": "./build/src/container/index.ts",
-    "./models": "./build/src/models/index.js",
-    "./builtins/context": "./build/src/builtins/context/index.js",
-    "./builtins/providers": "./build/src/builtins/providers/index.js",
-    "./builtins/queue-drivers": "./build/src/builtins/queue-drivers/index.js",
-    "./*": "./*"
+  "src": {
+    "ignitor": {
+      "basePath": "./build/src/ignitor/index.js"
+    }
   },
   "license": "MIT",
   "dependencies": {
