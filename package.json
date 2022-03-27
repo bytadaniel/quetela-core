@@ -17,12 +17,10 @@
     "build": "tsc",
     "rebuild": "rm -d -r -d build && npm run build"
   },
-  "files": [
-    "*"
-  ],
-  "src": {
+  "exports": {
     "ignitor": {
-      "basePath": "./build/src/ignitor/index.js"
+      "import": "./build/src/ignitor/index.js",
+      "require": "./build/src/ignitor/index.js"
     }
   },
   "license": "MIT",
