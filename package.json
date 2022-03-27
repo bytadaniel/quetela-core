@@ -29,16 +29,6 @@
   "devDependencies": {
     "@types/node": "^17.0.21"
   },
-  "files": [
-    "build/builtins",
-    "build/container",
-    "build/hooks",
-    "build/ignitor",
-    "build/models",
-    "build/tests",
-    "build/index.js",
-    "build/index.d.ts"
-  ],
   "main": "build/index.js",
   "publishConfig": {
     "access": "public"
