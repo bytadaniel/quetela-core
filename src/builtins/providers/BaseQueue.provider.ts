@@ -1,4 +1,4 @@
-import { Ioc } from 'src/container/Ioc'
+import { Ioc } from '../../container/Ioc'
 import { Provider } from '../../models'
 import { NodeQueueClient } from '../queue-drivers/base-driver'
 
