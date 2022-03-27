@@ -1,6 +1,6 @@
 {
   "name": "@quetela/core",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Light queue based app framework for simple enterprise development",
   "author": "danielbyta",
   "keywords": [
@@ -17,7 +17,9 @@
     "build": "tsc",
     "rebuild": "rm -d -r -d build && npm run build"
   },
-  "files": [ "build/src" ],
+  "files": [
+    "build/src"
+  ],
   "exports": {
     "./ignitor": "./build/src/ignitor/index.js",
     "./hooks": "./build/src/hooks/index.js",
