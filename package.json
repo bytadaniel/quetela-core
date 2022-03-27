@@ -29,7 +29,8 @@
   "devDependencies": {
     "@types/node": "^17.0.21"
   },
-  "main": "build/index",
+  "files": [ "build/*" ],
+  "main": "build/index.js",
   "publishConfig": {
     "access": "public"
   },
