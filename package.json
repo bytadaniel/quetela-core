@@ -29,17 +29,19 @@
   "devDependencies": {
     "@types/node": "^17.0.21"
   },
-  "files": [ "build/*" ],
+  "files": [
+    "build/**/*"
+  ],
   "main": "build/index.js",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bytadaniel/quetela"
+    "url": "git+https://github.com/bytadaniel/quetela-core"
   },
   "bugs": {
-    "url": "https://github.com/bytadaniel/quetela/issues"
+    "url": "https://github.com/bytadaniel/quetela-core/issues"
   },
-  "homepage": "https://github.com/bytadaniel/quetela#readme"
+  "homepage": "https://github.com/bytadaniel/quetela-core#readme"
 }

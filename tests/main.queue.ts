@@ -1,6 +1,6 @@
-import container from "../src/container"
-import { QueueClient } from "../src/builtins/queue-driver/node-queue-driver";
-import { Queue } from "../src/models/Queue.model";
+import container from "../container"
+import { QueueClient } from "../builtins/queue-driver/node-queue-driver"
+import { Queue } from "../models/Queue.model"
 
 export class MainQueue extends Queue {
   queueName = 'main-queue';
