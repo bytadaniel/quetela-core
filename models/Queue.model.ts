@@ -1,4 +1,4 @@
-import { QueueClient } from '../builtins/queue-driver/node-queue-driver';
+import { NodeQueueClient } from '../builtins/queue-drivers/base-driver';
 
 export abstract class Queue {
   /**
@@ -8,7 +8,7 @@ export abstract class Queue {
   /**
    * Инстанс подключения к реббиту
    */
-  abstract connection: QueueClient
+  abstract connection: NodeQueueClient
 }
 
 export interface QueueReference {

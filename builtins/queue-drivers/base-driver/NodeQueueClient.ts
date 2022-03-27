@@ -1,8 +1,8 @@
 import { NodeQueueDriver } from './NodeQueueDriver'
 import { NodeQueueConnection } from './NodeQueueConnection'
-import { QueueDriver } from '../QueueDirver'
+import { QueueClient } from '../QueueClient'
 
-export class QueueClient implements QueueClient {
+export class NodeQueueClient implements QueueClient {
   public connection: NodeQueueConnection
   private driver: NodeQueueDriver
 

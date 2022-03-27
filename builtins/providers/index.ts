@@ -1,1 +1,1 @@
-export * from './Rabbit.provider'
+export * from './BaseQueue.provider'

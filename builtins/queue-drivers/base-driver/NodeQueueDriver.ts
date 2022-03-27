@@ -1,5 +1,5 @@
 import { QueueConnection } from '../QueueConnection';
-import { QueueDriver } from './../QueueDirver';
+import { QueueDriver } from '../QueueDirver';
 import { NodeQueueConnection } from './NodeQueueConnection'
 
 export class NodeQueueDriver implements QueueDriver {
