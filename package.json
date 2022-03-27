@@ -17,9 +17,6 @@
     "build": "tsc",
     "rebuild": "rm -d -r -d build && npm run build"
   },
-  "files": [
-    "build/src"
-  ],
   "src": {
     "ignitor": {
       "basePath": "./build/src/ignitor/index.js"
