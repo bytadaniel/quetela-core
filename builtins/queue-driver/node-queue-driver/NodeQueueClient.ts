@@ -1,14 +1,15 @@
-import { QueueDriver } from './QueueDriver'
-import { QueueConnection } from './QueueConnection'
+import { NodeQueueDriver } from './NodeQueueDriver'
+import { NodeQueueConnection } from './NodeQueueConnection'
+import { QueueDriver } from '../QueueDirver'
 
-export class QueueClient {
-  public connection: QueueConnection
-  private driver: QueueDriver
+export class QueueClient implements QueueClient {
+  public connection: NodeQueueConnection
+  private driver: NodeQueueDriver
 
   constructor (
     ) {
-    this.driver = new QueueDriver()
-    this.connection = new QueueConnection()
+    this.driver = new NodeQueueDriver()
+    this.connection = new NodeQueueConnection()
 
     this.driver.createConnection(this.connection)
   }
