@@ -1,7 +1,7 @@
-import { NodeQueueConnection } from "./NodeQueueConnection"
+import { QueueConnection } from "./QueueConnection"
 
-export class NodeQueueDriver {
-  connections: NodeQueueConnection[]
+export class QueueDriver {
+  connections: QueueConnection[]
   queue: any[]
 
   constructor () {
@@ -27,11 +27,11 @@ export class NodeQueueDriver {
     }
   }
 
-  public createConnection (connection: NodeQueueConnection) {
+  public createConnection (connection: QueueConnection) {
     this.connections.push(connection)
   }
 
-  public dropConnection (connection: NodeQueueConnection) {
+  public dropConnection (connection: QueueConnection) {
     this.connections = this.connections.filter(c => c.id === connection.id)
   }
 

@@ -1,5 +1,5 @@
-import { NodeQueueClient } from '../queue-driver/node-queue-driver'
+import { QueueClient } from '../queue-driver/node-queue-driver'
 
-const nodeQueueClientConnection = new NodeQueueClient()
+const nodeQueueClientConnection = new QueueClient()
 
 export { nodeQueueClientConnection }

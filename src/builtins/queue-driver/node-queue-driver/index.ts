@@ -1,3 +1,3 @@
-export * from './NodeQueueClient'
-export * from './NodeQueueConnection'
-export * from './NodeQueueDriver'
+export * from './QueueClient'
+export * from './QueueConnection'
+export * from './QueueDriver'

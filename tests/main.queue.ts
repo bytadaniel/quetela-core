@@ -1,10 +1,10 @@
 import container from "../src/container"
-import { NodeQueueClient } from "../src/builtins/queue-driver/node-queue-driver";
+import { QueueClient } from "../src/builtins/queue-driver/node-queue-driver";
 import { Queue } from "../src/models/Queue.model";
 
 export class MainQueue extends Queue {
   queueName = 'main-queue';
-  connection = container.get<NodeQueueClient>('node-queue')
+  connection = container.get<QueueClient>('node-queue')
 
   constructor () {
     super()

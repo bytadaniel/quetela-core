@@ -24,7 +24,7 @@ export async function Ignitor ({
   
   taskInstances.forEach(taskInstance => {
     const queueInstance = new taskInstance.queue()
-    queueInstance.connection.assertQueue(queueInstance.queueName)
+    // queueInstance.connection.assertQueue(queueInstance.queueName)
   })
 
   // TODO сделать подписку на задачи из реббита

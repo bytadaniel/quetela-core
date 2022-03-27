@@ -27,7 +27,7 @@ function Ignitor({ providers = [], tasks = [] }) {
         yield (0, hooks_1.onProviderInit)(providerInstances);
         taskInstances.forEach(taskInstance => {
             const queueInstance = new taskInstance.queue();
-            queueInstance.connection.assertQueue(queueInstance.queueName);
+            // queueInstance.connection.assertQueue(queueInstance.queueName)
         });
         // TODO сделать подписку на задачи из реббита
         yield (0, hooks_1.onProviderReady)(providerInstances);
