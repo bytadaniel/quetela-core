@@ -1,1 +1,3 @@
-export * from './container'
+import { Ioc } from './Ioc'
+
+export default new Ioc()

@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ignitor = void 0;
-const container_1 = require("../container");
+const container_1 = __importDefault(require("../container"));
 const hooks_1 = require("../hooks");
 /**
  * Ignitor - это инициализатор приложения. Функция принимает ссылки на необходимые компоненты
@@ -18,7 +21,7 @@ const hooks_1 = require("../hooks");
  */
 function Ignitor({ providers = [], tasks = [] }) {
     return __awaiter(this, void 0, void 0, function* () {
-        const providerInstances = providers.map(Provider => new Provider(container_1.container));
+        const providerInstances = providers.map(Provider => new Provider(container_1.default));
         const taskInstances = tasks.map(Task => new Task());
         yield (0, hooks_1.onProviderRegister)(providerInstances);
         yield (0, hooks_1.onProviderInit)(providerInstances);

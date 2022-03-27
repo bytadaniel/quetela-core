@@ -1,4 +1,4 @@
-import { container } from '../container'
+import container from '../container'
 import { ProviderReference } from '../models'
 import { TaskReference } from '../models'
 import { onProviderInit, onProviderReady, onProviderRegister } from '../hooks'

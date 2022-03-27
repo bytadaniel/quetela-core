@@ -14,12 +14,13 @@ const models_1 = require("../../models");
 const __1 = require("..");
 class RabbitProvider extends models_1.Provider {
     register() {
-        this.container.bind('rabbit').toConstantValue(__1.rabbitConnection);
+        this.container.bindSingleton('rabbit', () => __1.rabbitConnection);
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            const connection = yield this.container.getAsync('rabbit');
-            this.container.rebind('rabbit').toConstantValue(connection);
+            const connection = this.container.get('rabbit');
+            const rabbit = yield connection;
+            this.container.rebindSingleton('rabbit', () => rabbit);
         });
     }
     ready() {

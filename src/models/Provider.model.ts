@@ -1,4 +1,4 @@
-import { Container } from 'inversify'
+import { Ioc } from '../container/Ioc'
 
 /**
  * Абстрактный класс для любого провайдера в приложении
@@ -7,7 +7,7 @@ export abstract class Provider {
   /**
    * В текущей реализации используется Inversify контейнер
    */
-  constructor (protected readonly container: Container) {}
+  constructor (protected readonly container: Ioc) {}
 
   /**
    * На этом этапе происходит регистрация зависимости в контейнере
@@ -26,5 +26,5 @@ export abstract class Provider {
 }
 
 export interface ProviderReference {
-  new(container: Container): Provider
+  new(container: Ioc): Provider
 }
