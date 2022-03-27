@@ -1,4 +1,4 @@
-import { Task } from './../models/Task.model';
+import { Task, TaskReference } from './../models/Task.model';
 import { GlobalContext } from '../builtins/context'
 import container from '../container'
 import { onProviderInit, onProviderReady, onProviderRegister } from '../hooks'
@@ -24,10 +24,10 @@ export async function Ignitor ({
   for (const context of contexts) {
     globalContext.createContext(context)
 
-    context.getTasks().forEach(task => {
-      queueClient.assertQueue(task.queue.queueName)
-      container.rebindSingleton(task.taskName, () => task)
-      container.rebindSingleton(task.queue.queueName, () => task.queue)
+    context.getTasks().forEach(TaskRef => {
+      queueClient.assertQueue(TaskRef.queue.queueName)
+      container.rebindSingleton(TaskRef.taskName, () => TaskRef)
+      container.rebindSingleton(TaskRef.queue.queueName, () => TaskRef.queue)
     })
   }
 
@@ -40,20 +40,20 @@ export async function Ignitor ({
   queueClient.consume(async message => {
     console.log('got message', message)
 
-    const task = container.get<Task>(message.taskName)
-    console.log('message task', task)
+    const TaskRef = container.get<TaskReference>(message.taskName)
+    console.log('message task', TaskRef)
 
-    const taskContexts = globalContext.getTaskContexts(task.taskName)
+    const taskContexts = globalContext.getTaskContexts(TaskRef.taskName)
     console.log('task contexts', { taskContexts })
 
-    const taskResult = await task.handler(message.data)
+    const taskResult = await TaskRef.handler(message.data)
     console.log('task result', taskResult)
 
     for (const context of taskContexts) {
-      const nextTasks = context.next(task)
-      console.log('task context next tasks', { task, context, nextTasks })
+      const nextTasks = context.next(TaskRef)
+      console.log('task context next tasks', { task: TaskRef, context, nextTasks })
       for (const { taskName } of nextTasks) {
-        queueClient.sendMessage(task.queue.queueName, { taskName, attempt: 1, data: taskResult })
+        queueClient.sendMessage(TaskRef.queue.queueName, { taskName, attempt: 1, data: taskResult })
       }
     }
 

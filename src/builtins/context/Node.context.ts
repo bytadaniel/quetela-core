@@ -1,10 +1,10 @@
-import { Task } from "../../models";
+import { TaskReference } from "../../models";
 import { TaskContext } from "./Task.context";
 
 export class NodeContext extends TaskContext {
   constructor (
-    private readonly node: Task,
-    private readonly branches: Task[]
+    private readonly node: TaskReference,
+    private readonly branches: TaskReference[]
   ) {
     super()
   }
@@ -13,7 +13,7 @@ export class NodeContext extends TaskContext {
     return this.branches
   }
 
-  public next(task: Task): Task[] {
+  public next(task: TaskReference): TaskReference[] {
     if (this.node.taskName === task.taskName) {
       return this.branches
     }

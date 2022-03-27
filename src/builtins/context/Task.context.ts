@@ -1,6 +1,6 @@
-import { Task } from "../../models";
+import { TaskReference } from "../../models";
 
 export abstract class TaskContext {
-  abstract next (task: Task): Task[]
-  abstract getTasks (): Task[]
+  abstract next (task: TaskReference): TaskReference[]
+  abstract getTasks (): TaskReference[]
 }

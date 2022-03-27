@@ -31,6 +31,7 @@ export class Ioc {
   }
 
   public get<T> (name: string) {
+    console.log('get', name, this.instances[name])
     const exists = Boolean(this.instances[name])
     if (!exists) throw new Error(`Instance ${name} does not exist`)
     return this.instances[name].getInstance() as T

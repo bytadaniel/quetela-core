@@ -24,7 +24,7 @@ import { Ioc } from '../container/Ioc'
 //    */
 //   abstract ready(): Promise<void>
 // }
-export  interface Provider {
+export interface Provider {
   register: () => void,
   init: () => Promise<void>,
   ready: () => Promise<void>

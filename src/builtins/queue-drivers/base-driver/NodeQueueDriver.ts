@@ -13,7 +13,7 @@ export class NodeQueueDriver implements QueueDriver {
     this.queues = []
     this.messages = []
 
-    setInterval(() => this.processMessage(), 5000)
+    setInterval(() => this.processMessage(), 2000)
   }
 
   public processMessage () {
@@ -24,10 +24,10 @@ export class NodeQueueDriver implements QueueDriver {
       const idleConnectionIndex = this.connections.findIndex(c => c.idle)
       if (idleConnectionIndex === -1) return
 
-      const message = this.messages.pop()
+      const message = this.messages.pop()!
 
       this.connections[idleConnectionIndex].idle = false
-      this.connections[idleConnectionIndex].triggerNotification(message)
+      this.connections[idleConnectionIndex].triggerNotification(message.message)
       this.connections[idleConnectionIndex].idle = true
     }
   }
