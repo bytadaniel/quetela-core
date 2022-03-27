@@ -27,7 +27,8 @@
     "./models": "./build/src/models/index.js",
     "./builtins/context": "./build/src/builtins/context/index.js",
     "./builtins/providers": "./build/src/builtins/providers/index.js",
-    "./builtins/queue-drivers": "./build/src/builtins/queue-drivers/index.js"
+    "./builtins/queue-drivers": "./build/src/builtins/queue-drivers/index.js",
+    "./*": "./*"
   },
   "license": "MIT",
   "dependencies": {
