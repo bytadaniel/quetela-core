@@ -1,6 +1,6 @@
 {
   "name": "@quetela/core",
-  "version": "0.2.24",
+  "version": "0.3.0",
   "description": "Light queue based app framework for simple enterprise development",
   "author": "danielbyta",
   "keywords": [
