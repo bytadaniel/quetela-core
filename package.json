@@ -2,12 +2,6 @@
   "name": "@quetela/core",
   "version": "0.2.2",
   "description": "Light queue based app framework for simple enterprise development",
-  "scripts": {
-    "dev": "ts-node",
-    "test": "",
-    "build": "tsc",
-    "rebuild": "rm -d -r -d build && npm run build"
-  },
   "keywords": [
     "quetela",
     "core",
@@ -16,6 +10,19 @@
     "task",
     "framework"
   ],
+  "scripts": {
+    "dev": "ts-node",
+    "test": "",
+    "build": "tsc",
+    "rebuild": "rm -d -r -d build && npm run build"
+  },
+  "exports": {
+    "./builtins": "./build/builtins",
+    "./container": "./build/container",
+    "./hooks": "./build/hooks",
+    "./ignitor": "./build/ignitor",
+    "./models": "./build/models"
+  },
   "author": "danielbyta",
   "license": "MIT",
   "dependencies": {
