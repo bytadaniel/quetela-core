@@ -1,6 +1,6 @@
 {
   "name": "@quetela/core",
-  "version": "0.2.16",
+  "version": "0.2.18",
   "description": "Light queue based app framework for simple enterprise development",
   "author": "danielbyta",
   "keywords": [
@@ -15,13 +15,11 @@
     "dev": "ts-node",
     "test": "",
     "build": "tsc",
-    "rebuild": "rm -d -r -d build && npm run build",
-    "publish": "np"
+    "rebuild": "rm -d -r -d build && npm run build"
   },
   "files": [
     "build"
   ],
-  "types": "./build/quetela-typings/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "ts-node": "^10.4.0",
