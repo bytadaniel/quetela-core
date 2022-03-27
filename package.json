@@ -18,6 +18,8 @@
     "rebuild": "rm -d -r -d build && npm run build"
   },
   "files": [
+    "build/src",
+    "src",
     "*"
   ],
   "exports": {
