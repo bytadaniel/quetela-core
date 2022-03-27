@@ -15,20 +15,13 @@
     "dev": "ts-node",
     "test": "",
     "build": "tsc",
-    "rebuild": "rm -d -r -d build && npm run build"
+    "rebuild": "rm -d -r -d build && npm run build",
+    "publish": "np"
   },
   "files": [
     "build"
   ],
-  "exports": {
-    "./ignitor": {
-      "import": "./build/ignitor/index.js",
-      "require": "./build/ignitor/index.js"
-    },
-    "./build/ignitor": {
-      "default": "./build/ignitor/index.js"
-    }
-  },
+  "types": "./build/quetela-typings/index.d.ts",
   "license": "MIT",
   "dependencies": {
     "ts-node": "^10.4.0",
