@@ -2,6 +2,7 @@
   "name": "@quetela/core",
   "version": "0.2.3",
   "description": "Light queue based app framework for simple enterprise development",
+  "author": "danielbyta",
   "keywords": [
     "quetela",
     "core",
@@ -16,14 +17,16 @@
     "build": "tsc",
     "rebuild": "rm -d -r -d build && npm run build"
   },
+  "files": [ "build/src" ],
   "exports": {
-    "./builtins": "./build/builtins",
-    "./container": "./build/container",
-    "./hooks": "./build/hooks",
-    "./ignitor": "./build/ignitor",
-    "./models": "./build/models"
+    "./ignitor": "./build/src/ignitor/index.js",
+    "./hooks": "./build/src/hooks/index.js",
+    "./container": "./build/src/container/index.ts",
+    "./models": "./build/src/models/index.js",
+    "./builtins/context": "./build/src/builtins/context/index.js",
+    "./builtins/providers": "./build/src/builtins/providers/index.js",
+    "./builtins/queue-drivers": "./build/src/builtins/queue-drivers/index.js"
   },
-  "author": "danielbyta",
   "license": "MIT",
   "dependencies": {
     "ts-node": "^10.4.0",
