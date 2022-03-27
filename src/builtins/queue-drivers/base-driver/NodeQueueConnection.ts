@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 import { EventEmitter } from 'events'
 import { QueueConnection } from '../QueueConnection'
 
-export class NodeQueueConnection extends EventEmitter {
+export class NodeQueueConnection extends EventEmitter implements QueueConnection {
   readonly id: string
   public idle: boolean
 
