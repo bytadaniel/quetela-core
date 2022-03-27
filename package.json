@@ -19,9 +19,12 @@
   },
   "files": [ "build" ],
   "exports": {
-    "ignitor": {
-      "import": "./build/src/ignitor/index.js",
-      "require": "./build/src/ignitor/index.js"
+    "./ignitor": {
+      "import": "./build/ignitor/index.js",
+      "require": "./build/ignitor/index.js"
+    },
+    "./build/ignitor": {
+      "default": "./build/ignitor/index.js"
     }
   },
   "license": "MIT",
