@@ -9,11 +9,10 @@ import { IgnitorConfig } from './Ignitor.interface';
  * после чего регистрирует все зависимости в Ioc контейнере и начинает прослушку задач
  */
 export async function Ignitor ({
-  queueClient: QueueClientRef,
+  queueClient,
   providers = [],
   contexts = []
 }: IgnitorConfig): Promise<void> {
-  const queueClient = new QueueClientRef()
   const globalContext = new GlobalContext()
 
   container.bindSingleton('queueClient', () => queueClient)
