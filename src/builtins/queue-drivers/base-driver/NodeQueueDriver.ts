@@ -1,27 +1,30 @@
+import { Message } from 'models/Message.model';
 import { QueueConnection } from '../QueueConnection';
 import { QueueDriver } from '../QueueDirver';
 import { NodeQueueConnection } from './NodeQueueConnection'
 
 export class NodeQueueDriver implements QueueDriver {
   connections: NodeQueueConnection[]
-  queue: any[]
+  queues: string[]
+  messages: { queue: string, message: any }[] // не для продакшена
 
   constructor () {
     this.connections = []
-    this.queue = []
+    this.queues = []
+    this.messages = []
 
     setInterval(() => this.processMessage(), 5000)
   }
 
   public processMessage () {
     const hasConnections = this.connections.length > 0
-    const hasMessages = this.queue.length > 0
+    const hasMessages = this.messages.length > 0
 
     if (hasConnections && hasMessages) {
       const idleConnectionIndex = this.connections.findIndex(c => c.idle)
       if (idleConnectionIndex === -1) return
 
-      const message = this.queue.pop()
+      const message = this.messages.pop()
 
       this.connections[idleConnectionIndex].idle = false
       this.connections[idleConnectionIndex].triggerNotification(message)
@@ -37,7 +40,13 @@ export class NodeQueueDriver implements QueueDriver {
     this.connections = this.connections.filter(c => c.id === connection.id)
   }
 
-  public registerMessage (message: any) {
-    this.queue.unshift(message)
+  public registerMessage (queue: string, message: Message) {
+    this.messages.unshift({ queue, message })
+  }
+
+  public assertQueue(name: string) {
+    if (!this.queues.includes(name)) {
+      this.queues.push(name)
+    }
   }
 }

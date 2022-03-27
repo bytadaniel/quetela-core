@@ -1,14 +1,8 @@
-import { QueueClientReference } from './../builtins/queue-drivers/QueueClient';
+import { Task } from './../models/Task.model';
+import { GlobalContext } from '../builtins/context'
 import container from '../container'
-import { ProviderReference } from '../models'
-import { TaskReference } from '../models'
 import { onProviderInit, onProviderReady, onProviderRegister } from '../hooks'
-
-export type IgnitorConfig = {
-  queueClient: QueueClientReference
-  tasks?: TaskReference[],
-  providers?: ProviderReference[]
-}
+import { IgnitorConfig } from './Ignitor.interface';
 
 /**
  * Ignitor - это инициализатор приложения. Функция принимает ссылки на необходимые компоненты
@@ -20,21 +14,48 @@ export async function Ignitor ({
   tasks = []
 }: IgnitorConfig): Promise<void> {
   const queueClient = new QueueClientRef()
-  container.bindSingleton('queueClient', () => queueClient)
+  const globalContext = new GlobalContext()
 
+  container.bindSingleton('queueClient', () => queueClient)
+  container.bindSingleton('globalContext', () => globalContext)
 
   const providerInstances = providers.map(Provider => new Provider(container))
   const taskInstances = tasks.map(Task => new Task())
 
-  await onProviderRegister(providerInstances)
-  await onProviderInit(providerInstances)  
-  
   taskInstances.forEach(taskInstance => {
-    // const queueInstance = new taskInstance.queue()
-    // queueInstance.connection.assertQueue(queueInstance.queueName)
+    const queueInstance = new taskInstance.queue()
+    queueClient.assertQueue(queueInstance.queueName)
+
+    container.bindSingleton(taskInstance.taskName, () => taskInstance)
+    container.bindSingleton(queueInstance.queueName, () => queueInstance)
   })
 
-  queueClient.consume(message => console.log(message))
+  await onProviderRegister(providerInstances)
+  await onProviderInit(providerInstances)  
+
+  // этот код вынести ближе к коду queueClient
+  queueClient.consume(async message => {
+    console.log('got message', message)
+
+    const task = container.get<Task>(message.taskName)
+    console.log('message task', { task })
+
+    const taskContexts = globalContext.getTaskContexts(task.taskName)
+    console.log('task contexts', { taskContexts })
+
+    const taskResult = await task.handler(message.data)
+    console.log('task result', taskResult)
+
+    for (const context of taskContexts) {
+      const nextTasks = context.next(task)
+      console.log('task context next tasks', { task, context, nextTasks })
+      for (const { taskName } of nextTasks) {
+        queueClient.sendMessage(task.queue.queueName, { taskName, attempt: 1, data: taskResult })
+      }
+    }
+
+    console.log('queueClient', queueClient)
+  })
 
   await onProviderReady(providerInstances)
 }

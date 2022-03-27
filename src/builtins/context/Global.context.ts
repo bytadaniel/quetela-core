@@ -20,6 +20,10 @@ export class GlobalContext {
     })
   }
 
+  public getTaskContexts (taskName: string) {
+    return this.taskContexts[taskName] ?? []
+  }
+
   public createContext (context: TaskContext): string {
     const id = uuid()
     this.bindTaskContexts(context)

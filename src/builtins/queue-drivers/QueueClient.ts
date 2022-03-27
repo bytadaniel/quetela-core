@@ -1,7 +1,10 @@
+import { Message } from "../../models/Message.model"
+
 export interface QueueClient {
   disconnect: () => void
-  sendMessage(message: any): void
-  consume(onConsumed: (message: any) => void): void
+  assertQueue: (name: string) => void
+  sendMessage (queue: string, message: Message): void
+  consume (onConsumed: (message: Message) => void): void
 }
 
 export interface QueueClientReference {
