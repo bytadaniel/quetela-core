@@ -17,9 +17,7 @@
     "build": "tsc",
     "rebuild": "rm -d -r -d build && npm run build"
   },
-  "files": [
-    "build/src"
-  ],
+  "files": ["*"],
   "exports": {
     "./ignitor": "./build/src/ignitor/index.js",
     "./hooks": "./build/src/hooks/index.js",
