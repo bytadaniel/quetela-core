@@ -36,7 +36,7 @@ import { Queue } from './Queue.model'
 //   // static producer: (result: any) => Promise<any>
 // }
 
-export abstract class Task {
+export abstract class AbstractTask {
   /**
    * Название задачи, которое будет циркулировать внутри очереди задач
    */
@@ -45,7 +45,7 @@ export abstract class Task {
    /**
    * Сылка на очередь задач, с которой будет работать текущая задача
    */
-  static queue: typeof Queue
+  static queue: Queue
 
    /**
    * Обработчик задачи
@@ -54,4 +54,12 @@ export abstract class Task {
    * Обработчик обязан вернуть какой-то результат для своих потомков
    */
   static handler: (payload: any) => Promise<void>
+}
+
+export interface Task {
+  taskName: string,
+  queue: Queue,
+  handler: (payload: any) => Promise<void>,
+
+  new(): AbstractTask
 }

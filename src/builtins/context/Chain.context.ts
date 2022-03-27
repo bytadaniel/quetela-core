@@ -2,7 +2,7 @@ import { Task } from "../../models";
 import { TaskContext } from "./Task.context";
 export class ChainContext extends TaskContext {
   constructor (
-    private readonly tasks: typeof Task[]
+    private readonly tasks: Task[]
   ) {
     super()
   }
@@ -11,7 +11,7 @@ export class ChainContext extends TaskContext {
     return this.tasks
   }
 
-  public next (task: typeof Task): typeof Task[] {
+  public next (task: Task): Task[] {
     const currentTask = this.tasks.find(t => t.taskName === task.taskName)
     if (!currentTask) return []
     const currentTaskIndex = this.tasks.indexOf(currentTask)

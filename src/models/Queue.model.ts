@@ -1,6 +1,6 @@
 import { QueueClient } from '../builtins/queue-drivers';
 
-export abstract class Queue {
+export abstract class AbstractQueue {
   /**
    * Имя очереди задач, которое будет зарегистрировано в реббите
    */
@@ -11,7 +11,9 @@ export abstract class Queue {
   static connection: QueueClient
 }
 
-// export interface QueueReference {
-//   queueName: string
-//   new(): Queue
-// }
+export interface Queue {
+  queueName: string
+  connection: QueueClient
+
+  new(): AbstractQueue
+}

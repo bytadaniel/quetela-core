@@ -40,8 +40,8 @@ export async function Ignitor ({
   queueClient.consume(async message => {
     console.log('got message', message)
 
-    const task = container.get<typeof Task>(message.taskName)
-    console.log('message task', Task)
+    const task = container.get<Task>(message.taskName)
+    console.log('message task', task)
 
     const taskContexts = globalContext.getTaskContexts(task.taskName)
     console.log('task contexts', { taskContexts })
