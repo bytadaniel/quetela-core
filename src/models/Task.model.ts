@@ -1,41 +1,57 @@
-import { QueueReference } from './Queue.model'
+import { Queue } from './Queue.model'
 
 /**
  * Абстрактный класс для любого провайдера в приложении
  * @TaskPayload - котекст текущей задачи
  * @TaskResult - результат обработчика родительской задачи
  */
-export abstract class Task<TaskPayload = unknown, TaskResult = unknown> {
+// export abstract class Task {
+//   /**
+//    * Название задачи, которое будет циркулировать внутри очереди задач
+//    */
+//   static readonly taskName: string
+
+//   // /**
+//   //  * Здесь мы объявляем массив ссылок на задачи, которые будет порождать текущая задача
+//   //  */
+//   // static readonly children: TaskReference[]
+
+//   /**
+//    * Сылка на очередь задач, с которой будет работать текущая задача
+//    */
+//   static readonly queue: Queue
+
+//   /**
+//    * Обработчик задачи
+//    * Когда очередь получает текущую задачу, она вызывает обработчик этой задачи
+//    * В обработчике выполняется основная логика задачи
+//    * Обработчик обязан вернуть какой-то результат для своих потомков
+//    */
+//   static handler: (payload: any) => Promise<any>
+
+//   // /**
+//   //  * Если задача является чьим-то потомком, то она получает на вход результат выполнения обработчика предка,
+//   //  * чтобы породить в очередь задач задачу для будущей обработки
+//   //  */
+//   // static producer: (result: any) => Promise<any>
+// }
+
+export abstract class Task {
   /**
    * Название задачи, которое будет циркулировать внутри очереди задач
    */
-  abstract readonly taskName: string
+  static taskName: string
 
-  /**
-   * Здесь мы объявляем массив ссылок на задачи, которые будет порождать текущая задача
-   */
-  abstract readonly children: TaskReference[]
-
-  /**
+   /**
    * Сылка на очередь задач, с которой будет работать текущая задача
    */
-  abstract readonly queue: QueueReference
+  static queue: typeof Queue
 
-  /**
+   /**
    * Обработчик задачи
    * Когда очередь получает текущую задачу, она вызывает обработчик этой задачи
    * В обработчике выполняется основная логика задачи
    * Обработчик обязан вернуть какой-то результат для своих потомков
    */
-  abstract handler (payload: TaskPayload): Promise<TaskResult>
-
-  /**
-   * Если задача является чьим-то потомком, то она получает на вход результат выполнения обработчика предка,
-   * чтобы породить в очередь задач задачу для будущей обработки
-   */
-  abstract producer (result: TaskResult): Promise<TaskPayload>
-}
-
-export interface TaskReference {
-  new(): Task
+  static handler: (payload: any) => Promise<void>
 }

@@ -3,7 +3,7 @@ import { TaskContext } from "./Task.context";
 
 export class ClosureTaskContext extends TaskContext {
   constructor (
-    private readonly tasks: Task[],
+    private readonly tasks: typeof Task[],
   ) {
     super()
   }
@@ -12,7 +12,7 @@ export class ClosureTaskContext extends TaskContext {
     return this.tasks
   }
 
-  public next (task: Task): Task[] {
+  public next (task: typeof Task): typeof Task[] {
     const [firstTask] = this.tasks
     const currentTask = this.tasks.find(t => t.taskName === task.taskName)
     if (!currentTask) return []

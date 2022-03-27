@@ -3,8 +3,8 @@ import { TaskContext } from "./Task.context";
 
 export class NodeContext extends TaskContext {
   constructor (
-    private readonly node: Task,
-    private readonly branches: Task[]
+    private readonly node: typeof Task,
+    private readonly branches: typeof Task[]
   ) {
     super()
   }
@@ -13,7 +13,7 @@ export class NodeContext extends TaskContext {
     return this.branches
   }
 
-  public next(task: Task): Task[] {
+  public next(task: typeof Task): typeof Task[] {
     if (this.node.taskName === task.taskName) {
       return this.branches
     }

@@ -4,15 +4,14 @@ export abstract class Queue {
   /**
    * Имя очереди задач, которое будет зарегистрировано в реббите
    */
-  abstract queueName: string;
+  static queueName: string;
   /**
    * Инстанс подключения к реббиту
    */
-  abstract connection: QueueClient
+  static connection: QueueClient
 }
 
-export interface QueueReference {
-  queueName: string,
-  connection: QueueClient
-  new(): Queue
-}
+// export interface QueueReference {
+//   queueName: string
+//   new(): Queue
+// }

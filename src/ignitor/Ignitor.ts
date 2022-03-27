@@ -11,7 +11,7 @@ import { IgnitorConfig } from './Ignitor.interface';
 export async function Ignitor ({
   queueClient: QueueClientRef,
   providers = [],
-  tasks = []
+  contexts = []
 }: IgnitorConfig): Promise<void> {
   const queueClient = new QueueClientRef()
   const globalContext = new GlobalContext()
@@ -20,15 +20,18 @@ export async function Ignitor ({
   container.bindSingleton('globalContext', () => globalContext)
 
   const providerInstances = providers.map(Provider => new Provider(container))
-  const taskInstances = tasks.map(Task => new Task())
 
-  taskInstances.forEach(taskInstance => {
-    const queueInstance = new taskInstance.queue()
-    queueClient.assertQueue(queueInstance.queueName)
+  for (const context of contexts) {
+    globalContext.createContext(context)
 
-    container.bindSingleton(taskInstance.taskName, () => taskInstance)
-    container.bindSingleton(queueInstance.queueName, () => queueInstance)
-  })
+    context.getTasks().forEach(task => {
+      queueClient.assertQueue(task.queue.queueName)
+      container.rebindSingleton(task.taskName, () => task)
+      container.rebindSingleton(task.queue.queueName, () => task.queue)
+    })
+  }
+
+
 
   await onProviderRegister(providerInstances)
   await onProviderInit(providerInstances)  
@@ -37,8 +40,8 @@ export async function Ignitor ({
   queueClient.consume(async message => {
     console.log('got message', message)
 
-    const task = container.get<Task>(message.taskName)
-    console.log('message task', { task })
+    const task = container.get<typeof Task>(message.taskName)
+    console.log('message task', Task)
 
     const taskContexts = globalContext.getTaskContexts(task.taskName)
     console.log('task contexts', { taskContexts })

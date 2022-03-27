@@ -1,9 +1,9 @@
 import { ProviderReference } from '../models/Provider.model';
-import { TaskReference } from '../models/Task.model'
 import { QueueClientReference } from '../builtins/queue-drivers/QueueClient';
+import { TaskContext } from '../builtins/context';
 
 export type IgnitorConfig = {
   queueClient: QueueClientReference
-  tasks?: TaskReference[],
+  contexts?: TaskContext[]
   providers?: ProviderReference[]
 }
