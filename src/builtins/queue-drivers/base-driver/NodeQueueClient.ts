@@ -3,12 +3,12 @@ import { NodeQueueConnection } from './NodeQueueConnection'
 import { QueueClient } from '../QueueClient'
 import { Message } from 'models/Message.model'
 
-export class NodeQueueClient implements QueueClient {
+export class NodeQueueClient extends QueueClient {
   public connection: NodeQueueConnection
   private driver: NodeQueueDriver
 
-  constructor (
-    ) {
+  constructor () {
+    super()
     this.driver = new NodeQueueDriver()
     this.connection = new NodeQueueConnection()
 
