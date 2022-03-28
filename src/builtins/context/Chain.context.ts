@@ -1,5 +1,6 @@
+import { chainScenario } from "../../builtins/handle-scenario/chain";
 import { TaskReference } from "../../models";
-import { TaskContext } from "./Task.context";
+import { TaskContext, TaskNext } from "./Task.context";
 export class ChainContext extends TaskContext {
   constructor (
     private readonly tasks: TaskReference[]
@@ -11,13 +12,13 @@ export class ChainContext extends TaskContext {
     return this.tasks
   }
 
-  public next (task: TaskReference): TaskReference[] {
+  public next (task: TaskReference): TaskNext {
     const currentTask = this.tasks.find(t => t.taskName === task.taskName)
-    if (!currentTask) return []
+    if (!currentTask) return { scenario: chainScenario, tasks: [] }
     const currentTaskIndex = this.tasks.indexOf(currentTask)
     const nextTaskIndex = currentTaskIndex + 1
     const nextTask = this.tasks.find((_task, index) => index === nextTaskIndex)
-    if (!nextTask) return []
-    return [nextTask]
+    if (!nextTask) return { scenario: chainScenario, tasks: [] }
+    return { scenario: chainScenario, tasks: [nextTask] }
   }
 }

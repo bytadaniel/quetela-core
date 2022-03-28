@@ -22,7 +22,7 @@ export abstract class Task {
    * В обработчике выполняется основная логика задачи
    * Обработчик обязан вернуть какой-то результат для своих потомков
    */
-  static handler: (payload: any) => Promise<any>
+  static handler: (payload: any) => Promise<unknown>
 }
 export interface TaskReference {
   /**
@@ -41,7 +41,7 @@ export interface TaskReference {
    * В обработчике выполняется основная логика задачи
    * Обработчик обязан вернуть какой-то результат для своих потомков
    */
-  handler: (payload: any) => Promise<any>,
+  handler: (payload: any) => Promise<unknown>,
 
   new(): void
 }

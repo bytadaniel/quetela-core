@@ -49,11 +49,12 @@ export async function Ignitor ({
     console.log('task result', taskResult)
 
     for (const context of taskContexts) {
-      const nextTasks = context.next(TaskRef)
+      const { scenario: evokeTaskScenario, tasks: nextTasks } = context.next(TaskRef)
       console.log('task context next tasks', { task: TaskRef, context, nextTasks })
-      for (const { taskName } of nextTasks) {
-        queueClient.sendMessage(TaskRef.queue.queueName, { taskName, attempt: 1, data: taskResult })
-      }
+      evokeTaskScenario(taskResult, nextTasks, queueClient)
+      // for (const { taskName } of nextTasks) {
+      //   queueClient.sendMessage(TaskRef.queue.queueName, { taskName, attempt: 1, data: taskResult })
+      // }
     }
 
     console.log('queueClient', queueClient)

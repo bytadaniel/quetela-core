@@ -1,5 +1,6 @@
+import { closureScenario } from "../../builtins/handle-scenario/closure"
 import { TaskReference } from "../../models";
-import { TaskContext } from "./Task.context";
+import { TaskContext, TaskNext } from "./Task.context";
 
 export class ClosureTaskContext extends TaskContext {
   constructor (
@@ -12,14 +13,14 @@ export class ClosureTaskContext extends TaskContext {
     return this.tasks
   }
 
-  public next (task: TaskReference): TaskReference[] {
+  public next (task: TaskReference): TaskNext {
     const [firstTask] = this.tasks
     const currentTask = this.tasks.find(t => t.taskName === task.taskName)
-    if (!currentTask) return []
+    if (!currentTask) return { scenario: closureScenario, tasks: []}
     const currentTaskIndex = this.tasks.indexOf(currentTask)
     const nextTaskIndex = currentTaskIndex + 1
     const nextTask = this.tasks.find((_task, index) => index === nextTaskIndex)
-    if (!nextTask) return [firstTask]
-    return [nextTask]
+    if (!nextTask) return { scenario: closureScenario, tasks: [firstTask] }
+    return { scenario: closureScenario, tasks: [firstTask] }
   }
 }
