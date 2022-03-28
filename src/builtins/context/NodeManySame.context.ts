@@ -2,7 +2,7 @@ import { nodeMultipleSameChildsScenario } from '../handle-scenario/node-multiple
 import { TaskReference } from "../../models";
 import { TaskContext, TaskNext } from "./Task.context";
 
-export class NodeContext extends TaskContext {
+export class NodeManySameContext extends TaskContext {
   constructor (
     private readonly node: TaskReference,
     private readonly branch: TaskReference
