@@ -24,40 +24,41 @@ export async function Ignitor ({
     globalContext.createContext(context)
 
     context.getTasks().forEach(TaskRef => {
+      console.log(TaskRef.queue.queueName)
+      console.log(TaskRef.taskName)
       queueClient.assertQueue(TaskRef.queue.queueName)
       container.rebindSingleton(TaskRef.taskName, () => TaskRef)
       container.rebindSingleton(TaskRef.queue.queueName, () => TaskRef.queue)
     })
   }
 
-
-
   await onProviderRegister(providerInstances)
-  await onProviderInit(providerInstances)  
+  await onProviderInit(providerInstances)
 
   // этот код вынести ближе к коду queueClient
   queueClient.consume(async message => {
     console.log('got message', message)
-
     const TaskRef = container.get<TaskReference>(message.taskName)
-    console.log('message task', TaskRef)
 
     const taskContexts = globalContext.getTaskContexts(TaskRef.taskName)
     console.log('task contexts', { taskContexts })
 
-    const taskResult = await TaskRef.handler(message.data)
+    const taskResult = await TaskRef.handler(message.previousData, message.data)
     console.log('task result', taskResult)
+
 
     for (const context of taskContexts) {
       const { scenario: evokeTaskScenario, tasks: nextTasks } = context.next(TaskRef)
       console.log('task context next tasks', { task: TaskRef, context, nextTasks })
-      evokeTaskScenario(taskResult, nextTasks, queueClient)
+      if (nextTasks.length) {
+        evokeTaskScenario(taskResult, message.previousData, nextTasks, queueClient)
+      }
       // for (const { taskName } of nextTasks) {
       //   queueClient.sendMessage(TaskRef.queue.queueName, { taskName, attempt: 1, data: taskResult })
       // }
     }
 
-    console.log('queueClient', queueClient)
+    // console.log('queueClient', queueClient)
   })
 
   await onProviderReady(providerInstances)

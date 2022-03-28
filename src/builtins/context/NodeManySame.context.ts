@@ -11,7 +11,7 @@ export class NodeManySameContext extends TaskContext {
   }
 
   public getTasks () {
-    return [this.branch]
+    return [this.node, this.branch]
   }
 
   public next (task: TaskReference): TaskNext {

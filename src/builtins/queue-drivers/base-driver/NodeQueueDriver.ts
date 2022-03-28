@@ -13,7 +13,7 @@ export class NodeQueueDriver implements QueueDriver {
     this.queues = []
     this.messages = []
 
-    setInterval(() => this.processMessage(), 2000)
+    setInterval(() => this.processMessage(), 50)
   }
 
   public processMessage () {
@@ -41,6 +41,7 @@ export class NodeQueueDriver implements QueueDriver {
   }
 
   public registerMessage (queue: string, message: Message) {
+    console.log('sending message', message, 'to queue', queue)
     this.messages.unshift({ queue, message })
   }
 

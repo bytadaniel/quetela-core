@@ -11,7 +11,7 @@ export class NodeContext extends TaskContext {
   }
 
   public getTasks () {
-    return this.branches
+    return [this.node, ...this.branches]
   }
 
   public next (task: TaskReference): TaskNext {
