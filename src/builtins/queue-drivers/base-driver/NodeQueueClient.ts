@@ -30,6 +30,10 @@ export class NodeQueueClient extends QueueClient {
   }
 
   public consume (onConsumed: (message: Message) => Promise<void>) {
-    this.connection.on('message', async (message: Message) => await onConsumed(message))
+    this.connection.on('message', (message: Message) => {
+      (async function () {
+        await onConsumed(message)
+      })()
+    })
   }
 }

@@ -41,7 +41,6 @@ export class NodeQueueDriver implements QueueDriver {
   }
 
   public registerMessage (queue: string, message: Message) {
-    console.log('sending message', message, 'to queue', queue)
     this.messages.unshift({ queue, message })
   }
 

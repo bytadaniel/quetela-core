@@ -11,7 +11,8 @@ import { IgnitorConfig } from './Ignitor.interface';
 export async function Ignitor ({
   queueClient,
   providers = [],
-  contexts = []
+  contexts = [],
+  options = {}
 }: IgnitorConfig): Promise<void> {
   const globalContext = new GlobalContext()
 
@@ -35,19 +36,19 @@ export async function Ignitor ({
 
   // этот код вынести ближе к коду queueClient
   queueClient.consume(async message => {
-    console.log('got message', message)
+    options.debug && console.log('got message', message)
     const TaskRef = container.get<TaskReference>(message.taskName)
 
     const taskContexts = globalContext.getTaskContexts(TaskRef.taskName)
-    console.log('task contexts', { taskContexts })
+    options.debug && console.log('task contexts', { taskContexts })
 
     const taskResult = await TaskRef.handler(message.previousData, message.data)
-    console.log('task result', taskResult)
+    options.debug && console.log('task result', taskResult)
 
 
     for (const context of taskContexts) {
       const { scenario: evokeTaskScenario, tasks: nextTasks } = context.next(TaskRef)
-      console.log('task context next tasks', { task: TaskRef, context, nextTasks })
+      options.debug && console.log('task context next tasks', { task: TaskRef, context, nextTasks })
       if (nextTasks.length) {
         evokeTaskScenario(taskResult, message.previousData, nextTasks, queueClient)
       }
