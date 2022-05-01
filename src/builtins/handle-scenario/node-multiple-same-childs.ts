@@ -7,7 +7,6 @@ export function nodeMultipleSameChildsScenario (
   nextTaskRefs: TaskReference[],
   queueClient: QueueClient
 ) {
-  console.log({ previousTaskResults })
   const [nextTaskRef] = nextTaskRefs
   currentTaskResult.map(data => queueClient.sendMessage(nextTaskRef.queue.queueName, {
     previousData: Object.assign(previousTaskResults, data),

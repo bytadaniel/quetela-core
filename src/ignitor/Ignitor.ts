@@ -24,8 +24,6 @@ export async function Ignitor ({
     globalContext.createContext(context)
 
     context.getTasks().forEach(TaskRef => {
-      console.log(TaskRef.queue.queueName)
-      console.log(TaskRef.taskName)
       queueClient.assertQueue(TaskRef.queue.queueName)
       container.rebindSingleton(TaskRef.taskName, () => TaskRef)
       container.rebindSingleton(TaskRef.queue.queueName, () => TaskRef.queue)
@@ -53,12 +51,7 @@ export async function Ignitor ({
       if (nextTasks.length) {
         evokeTaskScenario(taskResult, message.previousData, nextTasks, queueClient)
       }
-      // for (const { taskName } of nextTasks) {
-      //   queueClient.sendMessage(TaskRef.queue.queueName, { taskName, attempt: 1, data: taskResult })
-      // }
     }
-
-    // console.log('queueClient', queueClient)
   })
 
   await onProviderReady(providerInstances)

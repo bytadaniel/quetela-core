@@ -6,12 +6,3 @@ export abstract class QueueClient {
   abstract sendMessage (queue: string, message: Message): void
   abstract consume (onConsumed: (message: Message) => Promise<void>): void
 }
-
-// export interface QueueClientReference {
-//   disconnect: () => void
-//   assertQueue: (name: string) => void
-//   sendMessage (queue: string, message: Message): void
-//   consume (onConsumed: (message: Message) => void): void
-
-//   new(): QueueClient;
-// }
