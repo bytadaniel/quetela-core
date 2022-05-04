@@ -1,6 +1,12 @@
-import { chainScenario } from "../../builtins/handle-scenario/chain";
-import { TaskReference } from "../../models";
-import { TaskContext, TaskNext } from "./Task.context";
+import { chainScenario } from "../../builtins/handle-scenario/chain"
+import { TaskReference } from "../../models"
+import { TaskContext, TaskNext } from "./Task.context"
+
+/**
+ * ChainContext - это контекст, принимающий список задач и 
+ * передающий управление каждой задаче по цепочке в предопределенном списком порядке
+ * Контекст накапливает результат выполнения предыдущих задач
+ */
 export class ChainContext extends TaskContext {
   constructor (
     private readonly tasks: TaskReference[]

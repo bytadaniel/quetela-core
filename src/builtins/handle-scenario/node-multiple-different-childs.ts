@@ -1,6 +1,10 @@
 import { QueueClient } from '../queue-drivers'
 import { TaskReference } from '../../models'
 
+/**
+ * Сценарий разветвления ветви задачи, при которой от одной родительской задачи
+ * создается предопределенное количество различных подзадач
+ */
 export function nodeMultipleSameChildsScenario (
   currentTaskResult: any,
   previousTaskResults: Record<string, any>,

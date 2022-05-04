@@ -1,8 +1,12 @@
 import { NodeQueueDriver } from './NodeQueueDriver'
 import { NodeQueueConnection } from './NodeQueueConnection'
 import { QueueClient } from '../QueueClient'
-import { Message } from 'models/Message.model'
+import { Message } from 'models'
 
+/**
+ * Имплементация синтетического брокера сообщений QueueClient. Брокер может пригодиться, когда нужно что-то протестировать, но не хочется или не получается
+ * подключить реальный брокер в качестве периферии
+ */
 export class NodeQueueClient extends QueueClient {
   public connection: NodeQueueConnection
   private driver: NodeQueueDriver

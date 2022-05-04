@@ -1,6 +1,9 @@
 import { v4 as uuid } from 'uuid'
 import { TaskContext } from "./Task.context"
 
+/**
+ * Глобальный контекст используется для регистрации системных сущностей, таких как задачи, очереди и др
+ */
 export class GlobalContext {
   contexts: Map<string, TaskContext>
   taskContexts: Record<string, TaskContext[]>

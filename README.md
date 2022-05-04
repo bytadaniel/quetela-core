@@ -3,7 +3,66 @@
 Light queue based app framework for simple enterprise development
 
 ## Basic start
-### Initialize your own providers
+
+### Complex example
+https://github.com/bytadaniel/quetela-examples
+### Simple example
+```javascript
+  import container from './container'
+import { NodeQueueClient } from './builtins/queue-drivers/base-driver'
+import { Queue } from './models/Queue.model'
+import { Task } from './models/Task.model'
+import { ChainContext } from './builtins/context'
+import { Ignitor } from './ignitor'
+
+class BaseQueue extends Queue {
+  public static queueName = 'base_queue'
+}
+
+class BaseTask1 extends Task {
+  public static taskName = 'base_task_1'
+  public static queue = BaseQueue
+  public static async handler (payload: any) {
+    return {
+      name: BaseTask1.taskName,
+      data: Math.floor(Math.random() * 1000)
+    }
+  }
+}
+
+class BaseTask2 extends Task {
+  public static taskName = 'base_task_2'
+  public static queue = BaseQueue
+  public static async handler (payload: any) {
+    return {
+      name: BaseTask2.taskName,
+      data: Math.floor(Math.random() * 1000)
+    }
+  }
+}
+
+
+async function main () {
+  await Ignitor({
+    queueClient: new NodeQueueClient(), // nodejs synchronous message broker (mock for tests)
+    contexts: [new ChainContext([BaseTask1, BaseTask2])],
+    providers: []
+  })
+
+  const queueClient = container.get<NodeQueueClient>('queueClient')
+
+  queueClient.sendMessage(BaseQueue.queueName, {
+    previousData: {},
+    taskName: BaseTask1.taskName,
+    attempt: 1,
+    data: { hello: true }
+  })
+}
+
+main()
+```
+
+### Use providers for third-party connections
 ```javascript
 // providers/MongoProvider
 
@@ -30,90 +89,26 @@ export class MongoProvider extends Provider {
   }
 }
 ```
-### Initialize your own queues
+
+### Create your custom contexts with abstract Context and scenario function
 ```javascript
-// queues/MainQueue.js
-
-import { container, Queue } from '@quetela/core'
-
-export class MainQueue extends Queue {
-  queueName = 'main_queue'
-  connection = container.get('rabbit')
-}
-```
-### Initialize your own tasks and bind subtasks and queues to them
-```javascript
-// tasks/MainTask.js
-
-import { Task } from '@quetela/core'
-import { MainQueue } from '../queues/MainQueue.js'
-import { MainChildTask } from './MainChildTask.js'
-
-export class MainTask extends Task {
-  taskName = 'main_task'
-
-  children = [MainChildTask]
-
-  queue = MainQueue
-
-  async handler (payload) {
-    console.log(payload)
-    return { result: true }
+  export abstract class TaskContext {
+    abstract next (task: TaskReference): TaskNext
+    abstract getTasks (): TaskReference[]
   }
 
-  async producer (result) {
-    console.log(result)
-    return { payload: true }
+  export interface TaskNext {
+    tasks: TaskReference[],
+    scenario: (...args: any[]) => void
   }
-}
 ```
 
+### Create your own queueClients with abstract QueueClient/QueueConnection/QueueDriver
 ```javascript
-// tasks/MainChildTask.js
-
-import { Task } from '@quetela/core'
-import { MainQueue } from '../queues/MainQueue.js'
-
-export class MainChildTask extends Task {
-  taskName = 'main_child_task'
-
-  children = []
-
-  queue = MainQueue
-
-  async handler (payload) {
-    console.log(payload)
-    return { result: true }
+  export abstract class QueueClient {
+    abstract disconnect (): void
+    abstract assertQueue (name: string): void
+    abstract sendMessage (queue: string, message: Message): void
+    abstract consume (onConsumed: (message: Message) => Promise<void>): void
   }
-
-  async producer (result) {
-    console.log(result)
-    return { payload: true }
-  }
-}
 ```
-### Ingit a script with provided dependencies
-```javascript
-// scripts/MainScript.js
-
-import { Ignitor, RabbitProvider } from '@quetela/core'
-import { MongoProvider } from '../providers/MongoProvider.js'
-import { MainChildTask } from '../tasks/MainChildTask.js'
-import { MainTask } from '../tasks/MainTask.js'
-
-Ignitor({
-  providers: [
-    RabbitProvider,
-    MongoProvider
-  ],
-  tasks: [
-    MainTask,
-    MainChildTask  
-  ]
-})
-
-
-```
-
-### Run your script
-`$ npm run scripts/MainScript.js`

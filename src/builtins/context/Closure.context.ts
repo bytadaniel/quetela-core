@@ -2,6 +2,10 @@ import { closureScenario } from "../../builtins/handle-scenario/closure"
 import { TaskReference } from "../../models";
 import { TaskContext, TaskNext } from "./Task.context";
 
+/**
+ * ClosureContext - это контекст, получающий список задач и работающий по такому же принципу, как ChainContext
+ * Разница в том, что после выполнения последней задачи контекст зацикливается 
+ */
 export class ClosureTaskContext extends TaskContext {
   constructor (
     private readonly tasks: TaskReference[],

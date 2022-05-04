@@ -1,6 +1,9 @@
 import { QueueClient } from '../queue-drivers'
 import { TaskReference } from '../../models'
 
+/**
+ * Сценарий, передачи контекста от родительской задачи к задаче-потомку по цепочке для замыкающего контекста
+ */
 export function closureScenario (
   currentTaskResult: any,
   previousTaskResults: Record<string, any>,

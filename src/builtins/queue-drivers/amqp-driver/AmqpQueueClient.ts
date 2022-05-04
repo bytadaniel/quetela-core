@@ -1,8 +1,11 @@
 import amqp from 'amqplib'
 import { QueueClient } from '../QueueClient'
-import { Message } from 'models/Message.model'
+import { Message } from 'models'
 import { QueueReference } from 'models'
 
+/**
+ * Имплементация QueueClient для AMQP протокола
+ */
 export class AmqpClient extends QueueClient {
   driver: {}
   connection?: amqp.Connection

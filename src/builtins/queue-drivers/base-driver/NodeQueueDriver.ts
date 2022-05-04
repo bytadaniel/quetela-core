@@ -1,4 +1,4 @@
-import { Message } from 'models/Message.model';
+import { Message } from 'models';
 import { QueueConnection } from '../QueueConnection';
 import { QueueDriver } from '../QueueDirver';
 import { NodeQueueConnection } from './NodeQueueConnection'

@@ -2,7 +2,7 @@ import { QueueReference } from './Queue.model'
 
 /**
  * Абстрактный класс для любого провайдера в приложении
- * @TaskPayload - котекст текущей задачи
+ * @TaskPayload - контекст текущей задачи
  * @TaskResult - результат обработчика родительской задачи
  */
 export abstract class Task {
@@ -12,7 +12,7 @@ export abstract class Task {
   static taskName: string
 
   /**
-   * Сылка на очередь задач, с которой будет работать текущая задача
+   * Ссылка на очередь задач, с которой будет работать текущая задача
    */
   static queue: QueueReference
 
@@ -31,7 +31,7 @@ export interface TaskReference {
 
   taskName: string,
   /**
-   * Сылка на очередь задач, с которой будет работать текущая задача
+   * Ссылка на очередь задач, с которой будет работать текущая задача
    */
 
   queue: QueueReference,

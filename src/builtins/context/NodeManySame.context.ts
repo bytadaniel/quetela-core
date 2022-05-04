@@ -2,6 +2,11 @@ import { nodeMultipleSameChildsScenario } from '../handle-scenario/node-multiple
 import { TaskReference } from "../../models";
 import { TaskContext, TaskNext } from "./Task.context";
 
+/**
+* NodeManySameContext - это контекст, который принимает задачу-узел и задачу-ветвь
+* После выполнения задачи-узла контекст передается каждой задаче-ветви
+*/
+
 export class NodeManySameContext extends TaskContext {
   constructor (
     private readonly node: TaskReference,
@@ -17,8 +22,7 @@ export class NodeManySameContext extends TaskContext {
   public next (task: TaskReference): TaskNext {
     if (this.node.taskName === task.taskName) {
       return {
-        scenario: nodeMultipleSameChildsScenario,
-        tasks: [this.branch]
+        scenario: nodeMultipleSameChildsScenario, tasks: [this.branch]
       }
     }
     return { scenario: nodeMultipleSameChildsScenario, tasks: [] }

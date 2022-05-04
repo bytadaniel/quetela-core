@@ -1,4 +1,4 @@
-import { Task, TaskReference } from './../models/Task.model';
+import { TaskReference } from './../models/Task.model';
 import { GlobalContext } from '../builtins/context'
 import container from '../container'
 import { onProviderInit, onProviderReady, onProviderRegister } from '../hooks'

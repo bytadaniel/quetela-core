@@ -2,6 +2,10 @@ import { nodeMultipleSameChildsScenario } from "../../builtins/handle-scenario/n
 import { TaskReference } from "../../models";
 import { TaskContext, TaskNext } from "./Task.context";
 
+/**
+ * NodeContext - это контекст, который принимает задачу-узел и список задач-ветвей
+ * После выполнения задачи-узла контекст передается каждой задаче-ветви
+ */
 export class NodeContext extends TaskContext {
   constructor (
     private readonly node: TaskReference,
