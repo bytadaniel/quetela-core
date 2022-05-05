@@ -2,42 +2,64 @@
 
 Light queue based app framework for simple enterprise development
 
-## Basic start
+## Concepts
+#### How it works?
+![@quetela/core concepts](https://ik.imagekit.io/py1g6jiey/quetela_architecture_geMEaJWVC.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651707816431 "@quetela/core concepts")
 
-### Complex example
+#### It's really easy to configure difficult relations between tasks 
+![@quetela/core quetela_sample](https://ik.imagekit.io/py1g6jiey/sample_task_hierarchy_hDZ7FOywo.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651709274019 "@quetela/core quetela_sample")
+#### Contexts
+##### Chain context
+![@quetela/core chain_context](https://ik.imagekit.io/py1g6jiey/chain_context_RtpJNDbx1.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708529227 "@quetela/core chain_context")
+##### Closure context
+![@quetela/core closure_context](https://ik.imagekit.io/py1g6jiey/closure_context_kmzrrjExZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528961 "@quetela/core closure_context")
+##### Node context
+![@quetela/core node_context](https://ik.imagekit.io/py1g6jiey/node_context_BB-a7Y1W6.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528724 "@quetela/core node_context")
+
+##### Node multiple same context
+![@quetela/core node_multiple_same_context](https://ik.imagekit.io/py1g6jiey/node_multiple_same_context_Z2xr6p3o9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528544 "@quetela/core node_multiple_same_context")
+
+##### Global context (system feature)
+![@quetela/core global_context](https://ik.imagekit.io/py1g6jiey/global_context_Jg5JlOr-n.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528480 "@quetela/core global_context")
+
+### Code example
 https://github.com/bytadaniel/quetela-examples
 ### Simple example
 ```javascript
-  import container from './container'
-import { NodeQueueClient } from './builtins/queue-drivers/base-driver'
-import { Queue } from './models/Queue.model'
-import { Task } from './models/Task.model'
-import { ChainContext } from './builtins/context'
-import { Ignitor } from './ignitor'
+import container from '@quetela/core/build/container'
+import { NodeQueueClient } from '@quetela/core/build/builtins/queue-drivers/base-driver'
+import { Queue, Task } from '@quetela/core/build/models'
+import { ChainContext } from '@quetela/core/build/builtins/context'
+import { Ignitor } from '@quetela/core/build/ignitor'
 
 class BaseQueue extends Queue {
   public static queueName = 'base_queue'
 }
 
+class InitialTask extends Task {
+  public static taskName = 'initial_task'
+  public static queue = BaseQueue
+  public static async handler (ctx: any, payload: any) {
+    console.log('Hello from initital task')
+    return {}
+  }
+}
+
 class BaseTask1 extends Task {
   public static taskName = 'base_task_1'
   public static queue = BaseQueue
-  public static async handler (payload: any) {
-    return {
-      name: BaseTask1.taskName,
-      data: Math.floor(Math.random() * 1000)
-    }
+  public static async handler (ctx: any, payload: any) {
+    console.log('Hello from the first task')
+    return {}
   }
 }
 
 class BaseTask2 extends Task {
   public static taskName = 'base_task_2'
   public static queue = BaseQueue
-  public static async handler (payload: any) {
-    return {
-      name: BaseTask2.taskName,
-      data: Math.floor(Math.random() * 1000)
-    }
+  public static async handler (ctx: any, payload: any) {
+    console.log('Hello from the second task')
+    return {}
   }
 }
 
@@ -45,7 +67,7 @@ class BaseTask2 extends Task {
 async function main () {
   await Ignitor({
     queueClient: new NodeQueueClient(), // nodejs synchronous message broker (mock for tests)
-    contexts: [new ChainContext([BaseTask1, BaseTask2])],
+    contexts: [new ChainContext([InitialTask, BaseTask1, BaseTask2])],
     providers: []
   })
 
@@ -55,11 +77,14 @@ async function main () {
     previousData: {},
     taskName: BaseTask1.taskName,
     attempt: 1,
-    data: { hello: true }
+    data: {}
   })
 }
 
 main()
+// Hello from initial task
+// Hello from the first task
+// Hello from the second task
 ```
 
 ### Use providers for third-party connections
@@ -75,16 +100,16 @@ const connection = new Promise(resolve => resolve({
 
 export class MongoProvider extends Provider {
   register() {
-    this.container.bind('mongo').to(connection)
+    this.container.bind<MongoConnection>('mongo', () => connection)
   }
 
   async init() {
-    const awaitedMongoConnection = await this.container.getAsync('mongo')
-    this.container.rebind('mongo').to(awaitedMongoConnection)
+    const awaitedMongoConnection = await this.container.getAsync<MongoConnectionAuthenticated>('mongo', async (connection) => await connection.getAuthenticated())
+    this.container.rebind<MongoConnectionAuthenticated>('mongo', () => awaitedMongoConnection)
   }
 
   async ready() {
-    const mongoConnection = this.container.get('mongo')
+    const mongoConnection = this.container.get<MongoConnectionAuthenticated>('mongo')
     mongoConnection.logger = process.stderr
   }
 }
