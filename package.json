@@ -1,6 +1,6 @@
 {
   "name": "@quetela/core",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "A progressive Node.js package for building efficient and scalable server-side distributed queues with difficult relationships",
   "author": "danielbyta",
   "keywords": [
