@@ -11,7 +11,8 @@
     "mq",
     "queue",
     "task",
-    "hierarchy"
+    "hierarchy",
+    "low code"
   ],
   "scripts": {
     "dev": "ts-node",
