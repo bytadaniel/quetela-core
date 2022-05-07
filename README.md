@@ -14,10 +14,10 @@ Quetela is a pure flexible package which gives to developers clear and confident
 <p>Every part of Quetela represents an abstract class. So, therefore it is interchangeable and extendable. For example, you may use one of prebuild quene cliens or create your custom broker client</p>
 
 ## Concepts
-#### How it works?
-![@quetela/core concepts](https://ik.imagekit.io/py1g6jiey/quetela_architecture_geMEaJWVC.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651707816431 "@quetela/core concepts")
+* [See core architecture here](docs/CORE_BPMN.md)
+<!-- ![@quetela/core concepts](https://ik.imagekit.io/py1g6jiey/quetela_architecture_geMEaJWVC.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651707816431 "@quetela/core concepts") -->
 
-#### It's really easy to configure difficult relations between tasks 
+<!-- #### It's really easy to configure difficult relations between tasks 
 ![@quetela/core quetela_sample](https://ik.imagekit.io/py1g6jiey/sample_task_hierarchy_hDZ7FOywo.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651709274019 "@quetela/core quetela_sample")
 #### Contexts
 ##### Chain context
@@ -31,7 +31,7 @@ Quetela is a pure flexible package which gives to developers clear and confident
 ![@quetela/core node_multiple_same_context](https://ik.imagekit.io/py1g6jiey/node_multiple_same_context_Z2xr6p3o9.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528544 "@quetela/core node_multiple_same_context")
 
 ##### Global context (system feature)
-![@quetela/core global_context](https://ik.imagekit.io/py1g6jiey/global_context_Jg5JlOr-n.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528480 "@quetela/core global_context")
+![@quetela/core global_context](https://ik.imagekit.io/py1g6jiey/global_context_Jg5JlOr-n.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528480 "@quetela/core global_context") -->
 
 ### Code example
 https://github.com/bytadaniel/quetela-examples
