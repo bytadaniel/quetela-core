@@ -1,15 +1,17 @@
 {
   "name": "@quetela/core",
   "version": "0.5.3",
-  "description": "Light queue based app framework for simple enterprise development",
+  "description": "A progressive Node.js package for building efficient and scalable server-side distributed queues with difficult relationships",
   "author": "danielbyta",
   "keywords": [
     "quetela",
-    "core",
+    "orchestration",
     "amqp",
+    "kafka",
+    "mq",
     "queue",
     "task",
-    "framework"
+    "hierarchy"
   ],
   "scripts": {
     "dev": "ts-node",
