@@ -1,6 +1,17 @@
-# Quetela
+<p align="center">
+  <a href="#" target="blank"><img src="https://ik.imagekit.io/py1g6jiey/28232522_Ec1LrfcPL.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651898829640" width="300" alt="Quetela Logo" /></a>
+</p>
 
-Light queue based app framework for simple enterprise development
+<p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> package for building efficient and scalable server-side distributed queues with difficult relationships</p>
+
+## Description
+
+Quetela is a pure flexible package which gives to developers clear and confident way to design distributed systems. It uses modern JavaScript, is built with  <a href="http://www.typescriptlang.org" target="_blank">TypeScript</a> (preserves compatibility with pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming). Also, every part of Quetela is expandable.
+
+## Philosophy
+
+<p>Quetela is striving to abstract message brokers under interface and make all work with them on its own side. The only thing developer should do is to release how the intended entities will relate to each other.</p>
+<p>Every part of Quetela represents an abstract class. So, therefore it is interchangeable and extendable. For example, you may use one of prebuild quene cliens or create your custom broker client</p>
 
 ## Concepts
 #### How it works?
