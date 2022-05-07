@@ -14,7 +14,7 @@ Quetela is a pure flexible package which gives to developers clear and confident
 <p>Every part of Quetela represents an abstract class. So, therefore it is interchangeable and extendable. For example, you may use one of prebuild quene cliens or create your custom broker client</p>
 
 ## Concepts
-* [See core architecture here](docs/CORE_BPMN.md)
+* [Core architecture here](docs/CORE_BPMN.md)
 <!-- ![@quetela/core concepts](https://ik.imagekit.io/py1g6jiey/quetela_architecture_geMEaJWVC.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651707816431 "@quetela/core concepts") -->
 
 <!-- #### It's really easy to configure difficult relations between tasks 
@@ -33,6 +33,6 @@ Quetela is a pure flexible package which gives to developers clear and confident
 ##### Global context (system feature)
 ![@quetela/core global_context](https://ik.imagekit.io/py1g6jiey/global_context_Jg5JlOr-n.png?ik-sdk-version=javascript-1.4.3&updatedAt=1651708528480 "@quetela/core global_context") -->
 
-## Examples
-* [See some code examples here](https://github.com/bytadaniel/quetela-examples)
-* [See get started example here](docs/GET_STARTED_EXAMPLE.md)
+## Docs
+* [Get started](docs/GET_STARTED_EXAMPLE.md)
+* [Quetela code examples here](https://github.com/bytadaniel/quetela-examples)
